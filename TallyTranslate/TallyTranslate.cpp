@@ -1,15 +1,15 @@
 // TallyTranslate.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
-//#include "include\bmd_atem_win\BMDSwitcherAPI.idl"
-//#include "include\bmd_atem_win\BMDSwitcherAPI.h"
+#ifdef _WIN32
+#include "targetver.h"
+#define BOOST_ASIO_NO_WIN32_LEAN_AND_MEAN
+#endif
+#include <iostream>
+
+// ASIO uses LEAN_AND_MEAN by default, but this causes the BMD API include to fail.
+#include <boost/asio.hpp>
 #include "BMDSwitcherAPI_h.h"
-//#include "BMDSwitcherAPI_i.c"
-
-/*#include <socketapi.h>
-#include <websocket.h>*/
-
 
 int getSwitcher();
 int getTSLThing(int version);
@@ -48,7 +48,7 @@ class BMDInputCallback : public IBMDSwitcherInputCallback{
 		input_id = switcherInputID;
 	}
 
-	HRESULT Notify(BMDSwitcherInputEventType eventType) {
+	HRESULT STDMETHODCALLTYPE Notify(BMDSwitcherInputEventType eventType) {
 		if (eventType == bmdSwitcherInputEventTypeLongNameChanged)
 		{
 			return S_OK;
