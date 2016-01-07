@@ -1,26 +1,16 @@
 // TallyTranslate.cpp : Defines the entry point for the console application.
 //
 
-#ifdef _WIN32
-#include "targetver.h"
-#define BOOST_ASIO_NO_WIN32_LEAN_AND_MEAN
-#endif
+#include "TallyTranslate.h"
 #include <iostream>
 
-// ASIO uses LEAN_AND_MEAN by default, but this causes the BMD API include to fail.
-#include <boost/asio.hpp>
-#include "BMDSwitcherAPI_h.h"
-
-int getSwitcher();
-int getTSLThing(int version);
-enum TSLUMDVersion{v31, v40, v50};
 
 
 int main()
 {
 	getSwitcher();
     return 0;
-}
+};
 
 int getTSLThing(int version)
 {
@@ -29,46 +19,38 @@ int getTSLThing(int version)
 		const int TSL_MAX_PACKET_LENGTH = 2048;
 		const int TSL_DLE = 0xFE;
 		const int TSL_STX = 0x02;
-		/*SOCKET so = socket(AF_INET, SOCK_STREAM, IPPROTO::IPPROTO_UDP);
-		sockaddr addr;
-		
-		addr.sa_data = "192.168.0.1";
-		// TODO: Learn how the fuck this works.
-		
-		connect(so, &addr, sizeof(addr));*/
 	}
 
 	return 0;
-}
+};
 
-class BMDInputCallback : public IBMDSwitcherInputCallback{
-	BMDSwitcherInputId input_id;
 
-	BMDInputCallback(BMDSwitcherInputId switcherInputID) {
-		input_id = switcherInputID;
+BMDInputCallback::BMDInputCallback(BMDSwitcherInputId switcherInputID)
+{
+	input_id = switcherInputID;
+};
+
+HRESULT STDMETHODCALLTYPE BMDInputCallback::Notify(BMDSwitcherInputEventType eventType)
+{
+	if (eventType == bmdSwitcherInputEventTypeLongNameChanged)
+	{
+		return S_OK;
 	}
-
-	HRESULT STDMETHODCALLTYPE Notify(BMDSwitcherInputEventType eventType) {
-		if (eventType == bmdSwitcherInputEventTypeLongNameChanged)
-		{
-			return S_OK;
-		}
-		else if (eventType == bmdSwitcherInputEventTypeShortNameChanged)
-		{
-			return S_OK;
-		}
-		else if (eventType == bmdSwitcherInputEventTypeIsPreviewTalliedChanged)
-		{
-			return S_OK;
-		}
-		else if (eventType == bmdSwitcherInputEventTypeIsProgramTalliedChanged)
-		{
-			return S_OK;
-		}
-		else
-		{
-			return S_OK;
-		}
+	else if (eventType == bmdSwitcherInputEventTypeShortNameChanged)
+	{
+		return S_OK;
+	}
+	else if (eventType == bmdSwitcherInputEventTypeIsPreviewTalliedChanged)
+	{
+		return S_OK;
+	}
+	else if (eventType == bmdSwitcherInputEventTypeIsProgramTalliedChanged)
+	{
+		return S_OK;
+	}
+	else
+	{
+		return S_OK;
 	}
 };
 
