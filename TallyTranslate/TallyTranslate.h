@@ -9,18 +9,11 @@
 #endif // _WIN32
 
 #include <boost/asio.hpp>
-#include "BMDSwitcherAPI_h.h"
+#include <boost/date_time/posix_time/posix_time.hpp>
 
-int getSwitcher();
+
 int getTSLThing(int version);
 enum TSLUMDVersion { v31, v40, v50 };
-
-class BMDInputCallback : public IBMDSwitcherInputCallback {
-	BMDSwitcherInputId input_id;
-public:
-	BMDInputCallback(BMDSwitcherInputId);
-	HRESULT STDMETHODCALLTYPE Notify(BMDSwitcherInputEventType);
-};
 
 int main();
 
