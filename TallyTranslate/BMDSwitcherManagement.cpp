@@ -45,7 +45,7 @@ int getSwitcher()
 
 	// We've got the SwitcherDiscovery - now we'll try and connect to an ATEM.
 
-	BSTR ATEMIPAddr = BSTR("localhost");
+	BSTR ATEMIPAddr = SysAllocString(L"localhost");
 
 	IBMDSwitcher*					switcherDevice;
 	BMDSwitcherConnectToFailure		failReason;

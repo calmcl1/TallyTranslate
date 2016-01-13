@@ -149,12 +149,19 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BMDInputCallback.h" />
     <ClInclude Include="BMDSwitcherAPI_h.h" />
+    <ClInclude Include="BMDSwitcherManagement.h" />
+    <ClInclude Include="TallyTranslate.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="tsl\tslmanagement.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BMDInputCallback.cpp" />
     <ClCompile Include="BMDSwitcherAPI_i.c" />
+    <ClCompile Include="BMDSwitcherManagement.cpp" />
     <ClCompile Include="TallyTranslate.cpp" />
+    <ClCompile Include="tsl\tslmanagement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="include\bmd_atem_win\BMDSwitcherAPI.idl" />

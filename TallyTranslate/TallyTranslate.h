@@ -12,9 +12,6 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 
 
-int getTSLThing(int version);
-enum TSLUMDVersion { v31, v40, v50 };
-
 int main();
 
 #endif // TALLYTRANSLATE_H
