@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-int getSwitcher()
+int getSwitcher(char* IPAddress)
 {
 	const char* ATEM_SOFTWARE_VERSION = "6.6";
 
@@ -45,7 +45,7 @@ int getSwitcher()
 
 	// We've got the SwitcherDiscovery - now we'll try and connect to an ATEM.
 
-	BSTR ATEMIPAddr = SysAllocString(L"localhost");
+	BSTR ATEMIPAddr = SysAllocString((WCHAR*) IPAddress);
 
 	IBMDSwitcher*					switcherDevice;
 	BMDSwitcherConnectToFailure		failReason;

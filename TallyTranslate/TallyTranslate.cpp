@@ -10,7 +10,7 @@
 int main()
 {
 
-	getSwitcher();
+	getSwitcher("localhost");
 	getTSLThing(TSLUMDVersion::v50);
     return 0;
 };
